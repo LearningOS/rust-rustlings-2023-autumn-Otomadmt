@@ -1,12 +1,12 @@
 // tests9.rs
 //
-// Rust is highly capable of sharing FFI interfaces with C/C++ and other statically compiled
-// languages, and it can even link within the code itself! It makes it through the extern
-// block, just like the code below.
+// Rust is highly capable of sharing Foreign function interfaces (FFI) with C/C++ and other 
+// statically compiled languages, and it can even link within the code itself! It makes it 
+// through the extern block, just like the code below.
 //
-// The short string after the `extern` keyword indicates which ABI the externally imported
-// function would follow. In this exercise, "Rust" is used, while other variants exists like
-// "C" for standard C ABI, "stdcall" for the Windows ABI.
+// The short string after the `extern` keyword indicates which application binary interface (ABI)
+// the externally imported function would follow. In this exercise, "Rust" is used, while other 
+// variants exists like "C" for standard C ABI, "stdcall" for the Windows ABI.
 //
 // The externally imported functions are declared in the extern blocks, with a semicolon to
 // mark the end of signature instead of curly braces. Some attributes can be applied to those
@@ -27,14 +27,14 @@
 //
 // You should NOT modify any existing code except for adding two lines of attributes.
 
-// I AM NOT DONE
-
 extern "Rust" {
     fn my_demo_function(a: u32) -> u32;
+    #[link_name = "my_demo_function"]
     fn my_demo_function_alias(a: u32) -> u32;
 }
 
 mod Foo {
+    #[no_mangle]
     // No `extern` equals `extern "Rust"`.
     fn my_demo_function(a: u32) -> u32 {
         a
